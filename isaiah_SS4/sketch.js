@@ -53,7 +53,7 @@ function setup()
   createCanvas(720, 400);
 
  // put your setup code here, to run once:
-  Serial.begin(9600);
+  // Serial.begin(9600);
 
   //Serial port Setup code
   Serial = new p5.SerialPort(); 

@@ -33,6 +33,8 @@ const int buttonPin_3 = 9;
 //Button Variables
 bool buttonState_1 = 0;
 bool buttonState_2 = 0;
+bool buttonState_3 = 0;
+
 
 //Pot Variables
 int adcRead_1 = 0;
@@ -76,7 +78,7 @@ void loop()
     Serial.print(',');            //send comma character
     Serial.print(buttonState_2);  //send 2nd command
     Serial.print(',');            //send comma character
-    Serial.print(buttonPin_3);      //send 3rd command
+    Serial.print(buttonState_3);      //send 3rd command
     Serial.print(',');            //send comma character
     Serial.print(adcRead_1);      //send 4th Reading
     Serial.print('\n');           //send "Line Feed", or "New Line" character, or use println() instead.
