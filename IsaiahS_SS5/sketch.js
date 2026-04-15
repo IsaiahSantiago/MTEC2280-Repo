@@ -47,7 +47,7 @@ https://www.youtube.com/watch?v=2O3nm0Nvbi4&list=PLRqwX-V7Uu6aFcVjlDAkkGIixw70s7
 
 //For connecting with Serial monitor operations and my computer port 
 let serial;
-let portName = '0COM10';
+let portName = 'COM10';
 let options = {baudRate: 9600};
 let outByte = 0;  // 8-bit data to sends to microcontroller ESP33 remember?
 
@@ -58,8 +58,11 @@ let sensor = [0]; //We can simply use one sensor for the potentiometer right?
 let color;
 let diameter = 100; // initial diameter of Center circle for Graphic reference 
 
+//Pot pin
+let potPin = 4;
+
 //Variables for piezo buzzer 
-let piezoPin = 1; //piezo buzzer connected to pin 1
+let piezoPin = 5; //piezo buzzer connected to pin 1
 // let osc, playing, freq, amp;
 let music;
 let mic;
@@ -75,7 +78,7 @@ function preload()
 
 function setup() 
 {
-  createCanvas(400, 720);
+  createCanvas(720, 400);
   music.play();  
   mic = new p5.AudioIn();
   mic.start();
@@ -111,15 +114,14 @@ function setup()
 function draw() 
 {
   // background(0);
-  // let volume;
-  // let vol = amp.getLevel(); 
+  let volume;
+  let vol = amp.getLevel(); 
 
-  let vol = mic.getLevel();
 
   fill(0, 35, 225);
   ellipse(100, 100, 200, vol * 200);
 
-  let spectrum = fft.anaylyze();
+  // let spectrum = fft.anaylyze();
   
 
   color = map(sensor[0], 0, 1023, 0, 255); //mapping potentiometer to color values
@@ -132,20 +134,17 @@ function draw()
     stroke(0, c, c * 3);    //change stroke color for each x position, blue is scaled to 3x
     line(i, 0, i, height);  //draw vertical line for each x position
     
-    for (let i = 0; i < spectrum; i++)
-      {
-        let amperage = spectrum[i];
-        let y = map(0, 256, height, 0);
-        line(i, height, i, y);
+    // for (let i = 0; i < spectrum; i++)
+    //   {
+    //     let amperage = spectrum[i];
+    //     let y = map(0, 256, height, 0);
+    //     line(i, height, i, y);
 
-      }
+    //   }
   }
   
   //display text
-  fill(255);
-  text ("DIMMER", width/4, height/2);
-  fill(0);
-  text ("BRIGHTER", width-width/4, height/2);
+
   
   //mouse position indicator
   fill(0, 100, 255, 155);

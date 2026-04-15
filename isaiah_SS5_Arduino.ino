@@ -38,9 +38,9 @@ https://github.com/entertainmenttechnology/Pokorny-MTEC2280_D01-Spring2026/blob/
 
 */
 
-//Define Pins
-const int adcPin_1 = 1;
-const int piezoPin = 1; //piezo buzzer connected to pin 1
+//Define Pinss
+const int adcPin_1 = 4;
+const int piezoPin = 5; //piezo buzzer connected to pin 1
 
 //Pot Variables
 int adcRead_1 = 0;
@@ -92,12 +92,12 @@ void loop()
     tone(piezoPin, 1400, 100);
     tone(piezoPin, 1600, 100);
     tone(piezoPin, 2400, 300);
-    tone(piezoPin, 2600, 400);
     tone(piezoPin, 2800, 500);
-    tone(piezoPin, 2600, 600);
-    tone(piezoPin, 2400, 700);
+    tone(piezoPin, 2600, 400);
+    // tone(piezoPin, 2600, 600);
+    // tone(piezoPin, 2400, 700);
     
-    intro = 1;  //set intro to true so it doesn't play again
+    intro = 0;  //set intro to true so it doesn't play again
 
   }
 
@@ -107,35 +107,29 @@ void loop()
   {
     lastTime = currentTime;  //store current time as lastTime so we know when timer last triggered
 
-    //Send Data to P5.JS Sketch via Serial UART using print() and Comma Separation
-    Serial.print(buttonState_1);  //send 1st message
-    Serial.print(',');            //send comma character
-    Serial.print(buttonState_2);  //send 2nd message
-    Serial.print(',');            //send comma character
+
     Serial.print(adcRead_1);      //send 3rd message
-    Serial.print(',');            //send comma character
-    Serial.print(adcRead_2);      //send 4th message
     Serial.print('\n');           //send "Line Feed", or "New Line" character, or use println() instead.
   }
 
 
 
 
-  //main melody
-  tone(piezoPin, 90 * octave, 250);
-  tone(piezoPin, 100 * octave, 500);
-  tone(piezoPin, 110 * octave, 200);
+  // //main melody
+  // tone(piezoPin, 90 * octave, 250);
+  // tone(piezoPin, 100 * octave, 500);
+  // tone(piezoPin, 110 * octave, 200);
 
-  tone(piezoPin, 110 * octave, 300);
-  tone(piezoPin, 220 * octave, 700);
-  tone(piezoPin, 110 * octave, 400);
-  tone(piezoPin, 440 * octave, 500);
-  tone(piezoPin, 660 * octave, 200);
-  tone(piezoPin, 220 * octave, 700);
+  // tone(piezoPin, 110 * octave, 300);
+  // tone(piezoPin, 220 * octave, 700);
+  // tone(piezoPin, 110 * octave, 400);
+  // tone(piezoPin, 440 * octave, 500);
+  // tone(piezoPin, 660 * octave, 200);
+  // tone(piezoPin, 220 * octave, 700);
 
-  tone(piezoPin, 110 * octave, 500);
-  tone(piezoPin, 100 * octave, 500);
-  tone(piezoPin, 90 * octave, 500);
+  // tone(piezoPin, 110 * octave, 500);
+  // tone(piezoPin, 100 * octave, 500);
+  // tone(piezoPin, 90 * octave, 500);
 }
 
 
