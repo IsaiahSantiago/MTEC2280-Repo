@@ -29,6 +29,8 @@ REMEMBER to add the p5.serialport library to the index.html file of your p5.js p
 > New idea: Piezo can't be controlled directly through P5JS code HOWEVER graphic visuals can be 
 changed with sounds so therefore P5JS can be used to be reactionary to sound from the buzzer that's
 controlled through Arduino code.
+>So as for graphic primitives the could should've added a background that can change with pot value
+as well as a gradient and a visual circle for the mouse position.
 
 References: 
 https://github.com/entertainmenttechnology/Pokorny-MTEC2280_D01-Spring2026/blob/main/examples/S07-Serial_Arduino_to_P5/P5_Serial_Read/sketch.js
@@ -39,7 +41,7 @@ https://github.com/entertainmenttechnology/Pokorny-MTEC2280_D01-Spring2026/blob/
 https://github.com/entertainmenttechnology/Pokorny-MTEC2280_D01-Spring2026/blob/main/examples/S08-Serial_Arduino_to_P5_MultiSensor/Arduino_Serial_Multi_String/Arduino_Serial_Multi_String.ino
 https://editor.p5js.org/codingtrain/sketches/goeU3RUbU
 https://www.youtube.com/watch?v=q2IDNkUws-A&list=PLRqwX-V7Uu6aFcVjlDAkkGIixw70s7jpW&index=8
-
+https://www.youtube.com/watch?v=2O3nm0Nvbi4&list=PLRqwX-V7Uu6aFcVjlDAkkGIixw70s7jpW&index=11 
 
 */
 
@@ -77,9 +79,8 @@ function setup()
   music.play();  
   mic = new p5.AudioIn();
   mic.start();
-
   amp = new p5.Amplitude();
-  
+  fft = new p5.FFT(0, 256);
 
 
   textAlign(CENTER, CENTER); //Text should be in the center top of the page like a presentation
@@ -87,14 +88,6 @@ function setup()
   fill(156, 10, 10); //Give it a red-ish tint -
   stroke(3); //- and a nice outline to differentiate it from the Background.
   
-
-
-
-
-
-
-
-
 
 
 
@@ -126,11 +119,11 @@ function draw()
   fill(0, 35, 225);
   ellipse(100, 100, 200, vol * 200);
 
+  let spectrum = fft.anaylyze();
+  
+
   color = map(sensor[0], 0, 1023, 0, 255); //mapping potentiometer to color values
-
   background(10, 20, 15 * sensor[0]);  // fill frame w/ background color effecting blue
-
-
 
 
   for (let i = 0; i < width; i++)
@@ -138,6 +131,14 @@ function draw()
     let c = map(i, 0, width, 0, 255);  //map i to 0-255 range for color
     stroke(0, c, c * 3);    //change stroke color for each x position, blue is scaled to 3x
     line(i, 0, i, height);  //draw vertical line for each x position
+    
+    for (let i = 0; i < spectrum; i++)
+      {
+        let amperage = spectrum[i];
+        let y = map(0, 256, height, 0);
+        line(i, height, i, y);
+
+      }
   }
   
   //display text
