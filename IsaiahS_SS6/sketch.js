@@ -188,11 +188,11 @@ function mouseIsPressed()
   }
   else if (mouseX > width/2 - 20 && mouseX < width && mouseY < height/4) // top right quadrant
   {
-    outByte = 1;
+    outByte = 2;
   }
     else if (width/2 + 60 && mouseX < width && mouseY < height/4) // top right quadrant
   {
-    outByte = 1;
+    outByte = 3;
   }
   else  // default case
   {
@@ -202,10 +202,6 @@ function mouseIsPressed()
 
   serial.write(outByte); //send outByte across serial port
 }
-
-
-
-
 
 
 
