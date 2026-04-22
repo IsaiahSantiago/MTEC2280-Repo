@@ -49,7 +49,10 @@ void loop()
     inByte = Serial.read(); //Store incoming byte
     if(inByte == 'A')
     {
-      digitalWrite(ledPin, 1);
+      digitalWrite(LED1, 1);
+      digitalWrite(LED2, 1);
+      digitalWrite(LED3, 1);
+
       adcRead_1 = analogRead(adcPin_1); //read pot 1
       buttonState_1 = !digitalRead(buttonPin_1);
       buttonState_2 = !digitalRead(buttonPin_2);

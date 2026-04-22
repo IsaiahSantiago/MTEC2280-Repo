@@ -159,7 +159,7 @@ function draw()
   {
   // if mouse postion is within the radius of the starting soon screen button then activate...
 
-    if(dist(mouseX, mouseY, width/2, height/2) < 70) 
+    if(dist(mouseX, mouseY, width/2, height/2) < 60) 
       {
         rxFlag = !rxFlag; // toggle the rxFlag to essentially turn on sending data to the microcontroller
         if(rxFlag)
@@ -171,14 +171,11 @@ function draw()
             serial.write("B"); //if rxFlag is false, we want to pause receiving data, so...
           }
       }
-    }
 
 
-    
-function mouseIsPressed() 
-{
+
   //check mouse position when mouse is clicked
-    if (dist(mouseX, mouseY, width, height) < 170)
+    if (dist(mouseX, mouseY, width, height) < 60)
   {
     outByte = 0;
   }
@@ -201,7 +198,41 @@ function mouseIsPressed()
 
 
   serial.write(outByte); //send outByte across serial port
+
+
+
+
 }
+
+
+    
+// function mouseIsPressed() 
+// {
+//   //check mouse position when mouse is clicked
+//     if (dist(mouseX, mouseY, width, height) < 60)
+//   {
+//     outByte = 0;
+//   }
+//   else if (mouseX < width/2 - 100 && mouseX > 0 && mouseY < height/4) // top left quadrant
+//   {
+//     outByte = 1;
+//   }
+//   else if (mouseX > width/2 - 20 && mouseX < width && mouseY < height/4) // top right quadrant
+//   {
+//     outByte = 2;
+//   }
+//     else if (width/2 + 60 && mouseX < width && mouseY < height/4) // top right quadrant
+//   {
+//     outByte = 3;
+//   }
+//   else  // default case
+//   {
+//     outByte = 0;
+//   }
+
+
+//   serial.write(outByte); //send outByte across serial port
+// }
 
 
 
